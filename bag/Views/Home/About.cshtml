@@ -1,0 +1,32 @@
+﻿function createDirectory() {    
+    var name_dialog = "dialog_addDirectory";
+    var field_array = ([{ "id": "nameDirectory", "type": "text", "name": "Имя папки", "value": "" }]);
+    var button_array = [{ name: "Сохранить", func: 'saveNewDirectory()' },
+    { name: "Закрыть", func: 'bag("#dialog_addDirectory").remove()' }];
+    
+    createSubmenu(name_dialog, "Создать папку", field_array, button_array, null);
+    
+    document.querySelector('#nameDirectory').onkeyup = function () { bag('#nameDirectory').translit(); };
+
+}
+function saveNewDirectory() {   
+    ajax({
+        url: '../userImages/CreateDirectory',
+        data: JSON.stringify({ nameDirectory: bag('#nameDirectory').val() }),
+        success: function (data) {
+            loadImagesUser();
+            viewMessage('ErrorNewDir', (data));
+        }
+    });
+}
+var urlActiv = '';
+function loadImagesUser(urlDir) {
+    urlActiv = "";
+    ajax({
+        url: '../userImages/getDirInfo',
+        data: JSON.stringify({ nameDirectory: urlDir }),
+        success: function (data) {            
+            var div = document.querySelector('#viewDir');
+            if (urlDir) {
+                urlActiv = urlDir;
+     

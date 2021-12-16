@@ -1,0 +1,8 @@
+@*@using bag.Models.Base
+@model IEnumerable<bag.Models.Base.pageModule>
+
+
+@foreach (pageModule p in Model)
+{
+    @Html.Action(p.module.urlModule, "Modules", new { idPageModule=p.idPageModule })
+}*@

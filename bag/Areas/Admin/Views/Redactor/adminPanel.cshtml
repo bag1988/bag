@@ -1,0 +1,29 @@
+﻿<script src="~/Areas/Admin/script/bag.js"></script>
+<script src="~/Areas/Admin/script/BAGadminScript.js"></script>
+<link href="~/Content/font-awesome.css" rel="stylesheet" />
+<input id="actionName" type="hidden" value="@ViewContext.RouteData.Values["action"].ToString()" />
+<div id="adminPanel" class="movingDiv">
+    <h4>Меню<i onclick="bag('#menuAdminPage').toggle(); bag(this).replaceCss('icon-caret-up icon-caret-down');" class="icon-caret-up"></i></h4>    
+    <div id="menuAdminPage">
+        <hr />
+        <div>
+            <a class="abtn" onclick="showViewModule('#parentContainer')">Расширения</a>
+        </div>
+        <hr />
+        <div>
+            <a class="abtn" onclick="saveChangePage('@ViewContext.RouteData.Values["controller"].ToString()/@ViewContext.RouteData.Values["action"].ToString()')">Сохранить изменения</a>
+        </div>
+    </div>
+    <div>
+        <div id="editorMenuToolbar" class="btn-toolbar" style="cursor:move;" data-role="editor-toolbar" data-target="#editor">
+                      
+        </div>
+    </div>    
+</div>
+<script type="text/javascript">          
+        var ready = (callback) => {
+            if (document.readyState != "loading") callback();
+            else document.addEventListener("DOMContentLoaded", callback);
+        }
+        ready(() => { startRedactor(); });
+</script>

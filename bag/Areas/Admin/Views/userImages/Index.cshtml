@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Редактор изображений";
+}
+
+<h2>@ViewBag.Title</h2>
+<script type="text/javascript">
+    function runWhenReady() {
+        if (window.$) {
+            loadImagesUser();
+        }
+        else {
+            setTimeout(runWhenReady, 100);
+        }
+    }
+    runWhenReady();
+    
+</script>
+<p>
+    <a class="btn btn-default" onclick="createDirectory()">Создать папку</a>
+    <a class="btn btn-primary" onclick="addNewImages()">Загрузить изображения</a>
+    
+</p>
+<div id="viewDir">
+    
+</div>
